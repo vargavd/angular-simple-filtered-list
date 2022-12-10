@@ -1,18 +1,16 @@
 <ul class="list-group">
-  <li class="list-group-item d-flex justify-content-between align-items-center">
-    Lorem ipsum dolor sit amet
+  <li
+    class="list-group-item d-flex justify-content-between align-items-center"
+    *ngFor="let item of filteredItems"
+  >
+    {{ item.title }}
+
     <div>
-      <span class="badge bg-primary">14</span>
-      <span class="badge bg-primary ms-2">14</span>
+      <span
+        *ngFor="let type of item.types; let i = index"
+        [ngClass]="{ badge: true, 'bg-primary': true, 'ms-1': i > 0 }"
+        >{{ type }}</span
+      >
     </div>
-  </li>
-  <li class="list-group-item d-flex justify-content-between align-items-center">
-    Habemus appareat consequat ut sea, te sed lorem hendrerit, posse oratio quo
-    te.
-    <span class="badge bg-primary">2</span>
-  </li>
-  <li class="list-group-item d-flex justify-content-between align-items-center">
-    Augue vivendo volumus vis in
-    <span class="badge bg-primary">1</span>
   </li>
 </ul>

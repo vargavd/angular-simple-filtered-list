@@ -1,4 +1,6 @@
 <div class="container">
-  <app-filter-panel></app-filter-panel>
-  <app-list></app-list>
+  <app-filter-panel
+    (selectedTypesChanged)="onSelectedTypesChanged($event)"
+  ></app-filter-panel>
+  <app-list [selectedTypes]="selectedTypes"></app-list>
 </div>

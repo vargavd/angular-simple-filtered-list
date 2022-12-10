@@ -1,10 +1,16 @@
 import { Component } from '@angular/core';
 
+
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'ng-section-5-filtered-list';
+  selectedTypes: string[] = [];
+
+  onSelectedTypesChanged(selectedTypes: string[]) {
+    this.selectedTypes = selectedTypes;
+  }
 }

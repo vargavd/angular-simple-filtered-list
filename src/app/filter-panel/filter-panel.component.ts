@@ -1,22 +1,23 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, DoCheck, EventEmitter, Output } from '@angular/core';
+
+// sample data
+import { Types } from '../../sample-data';
 
 @Component({
   selector: 'app-filter-panel',
   templateUrl: './filter-panel.component.html',
   styleUrls: ['./filter-panel.component.css']
 })
-export class FilterPanelComponent implements OnInit {
-  types: { title: string, checked: boolean }[] = [
-    { title: 'Type 1', checked: false },
-    { title: 'Type 2', checked: false },
-    { title: 'Type 3', checked: false },
-    { title: 'Type 4', checked: false },
-  ];
+export class FilterPanelComponent implements DoCheck {
+  // private properties
+  types: { title: string, checked: boolean }[] = Types.map(type => ({ title: type, checked: false }));
   openedSortingDropdown: boolean = false;
 
-  constructor() { }
+  // output properties
+  @Output() selectedTypesChanged = new EventEmitter<string[]>();
 
-  ngOnInit(): void {
+  ngDoCheck(): void {
+    this.selectedTypesChanged.emit(this.types.filter(t => t.checked).map(t => t.title));
   }
 
 }
