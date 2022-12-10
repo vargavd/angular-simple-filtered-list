@@ -40,6 +40,7 @@ const generateTypesArray = () => {
 export class ListComponent implements OnChanges {
   // input properties
   @Input() selectedTypes: string[] = [];
+  @Input() selectedSorting: string = '';
 
   // private properties
   items: IItem[] = [];
@@ -67,6 +68,34 @@ export class ListComponent implements OnChanges {
 
         return true;
       });
+    }
+
+    if (this.selectedSorting === 'title-desc') {
+      this.filteredItems.sort((item1, item2) => {
+        if (item1.title < item2.title) {
+          return -1;
+        }
+
+        if (item1.title === item2.title) {
+          return 0;
+        }
+
+        return 1;
+      })
+    }
+
+    if (this.selectedSorting === 'title-asc') {
+      this.filteredItems.sort((item1, item2) => {
+        if (item1.title > item2.title) {
+          return -1;
+        }
+
+        if (item1.title === item2.title) {
+          return 0;
+        }
+
+        return 1;
+      })
     }
   }
 

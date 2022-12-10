@@ -9,8 +9,13 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   selectedTypes: string[] = [];
+  selectedSorting: string = '';
 
   onSelectedTypesChanged(selectedTypes: string[]) {
     this.selectedTypes = selectedTypes;
+  }
+
+  onSelectedSortingChanged(selectedSorting: string) {
+    this.selectedSorting = selectedSorting;
   }
 }

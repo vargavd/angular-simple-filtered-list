@@ -32,19 +32,35 @@
             (click)="openedSortingDropdown = !openedSortingDropdown"
           >
             Sort
+            <span *ngIf="selectedSortingMethod === 'title-desc'">
+              : <i class="bi bi-sort-alpha-down"></i>
+              Title
+            </span>
+            <span *ngIf="selectedSortingMethod === 'title-asc'">
+              : <i class="bi bi-sort-alpha-down-alt"></i>
+              Title
+            </span>
           </a>
 
           <ul
             [ngClass]="{ 'dropdown-menu': true, show: openedSortingDropdown }"
           >
             <li>
-              <a class="dropdown-item" href="#">
+              <a
+                class="dropdown-item"
+                href="#"
+                (click)="setSorting('title-desc')"
+              >
                 <i class="bi bi-sort-alpha-down"></i>
                 Title
               </a>
             </li>
             <li>
-              <a class="dropdown-item" href="#">
+              <a
+                class="dropdown-item"
+                href="#"
+                (click)="setSorting('title-asc')"
+              >
                 <i class="bi bi-sort-alpha-down-alt"></i>
                 Title
               </a>
