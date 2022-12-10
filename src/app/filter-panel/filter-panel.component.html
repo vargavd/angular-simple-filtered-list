@@ -1,0 +1,57 @@
+<div class="card my-3">
+  <div class="card-header">Filters & Sorting</div>
+  <div class="card-body">
+    <div class="row">
+      <div class="col">
+        <button
+          type="button"
+          *ngFor="let type of types"
+          [ngClass]="{
+            btn: true,
+            'btn-primary': type.checked,
+            'btn-outline-primary': !type.checked
+          }"
+          (click)="type.checked = !type.checked"
+        >
+          {{ type.title }}
+        </button>
+      </div>
+      <div class="col text-end">
+        <div class="dropdown">
+          <a
+            [ngClass]="{
+              btn: true,
+              'btn-outline-primary': true,
+              'dropdown-toggle': true,
+              show: openedSortingDropdown
+            }"
+            href="#"
+            role="button"
+            data-bs-toggle="dropdown"
+            [attr.aria-expanded]="openedSortingDropdown ? 'true' : 'false'"
+            (click)="openedSortingDropdown = !openedSortingDropdown"
+          >
+            Sort
+          </a>
+
+          <ul
+            [ngClass]="{ 'dropdown-menu': true, show: openedSortingDropdown }"
+          >
+            <li>
+              <a class="dropdown-item" href="#">
+                <i class="bi bi-sort-alpha-down"></i>
+                Title
+              </a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="#">
+                <i class="bi bi-sort-alpha-down-alt"></i>
+                Title
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
