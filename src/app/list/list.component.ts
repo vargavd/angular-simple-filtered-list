@@ -5,7 +5,15 @@ import { Titles, Types, IItem } from '../../sample-data';
 
 // helper function
 const generateTypesArray = () => {
-  let getARandomType = () => Types[Math.floor(Math.random()*Types.length)];
+  let clonedTypes = [...Types];
+
+  let getARandomType = () => {
+    const index = Math.floor(Math.random()*clonedTypes.length);
+    const type = clonedTypes[index];
+
+    clonedTypes.splice(index, 1);
+    return type;
+  };
 
   let types = [ getARandomType() ];
 
@@ -47,18 +55,17 @@ export class ListComponent implements OnChanges {
   }
 
   ngOnChanges() {
-    console.log(this.selectedTypes);
     if (this.selectedTypes.length === 0) {
       this.filteredItems = [...this.items];
     } else {
       this.filteredItems = this.items.filter(item => {
-        for (let index = 0; index < item.types.length; index++) {
-          if (this.selectedTypes.includes(item.types[index])) {
-            return true;
+        for (let index = 0; index < this.selectedTypes.length; index++) {
+          if (!item.types.includes(this.selectedTypes[index])) {
+            return false;
           }
         }
 
-        return false;
+        return true;
       });
     }
   }
