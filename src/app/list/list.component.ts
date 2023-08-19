@@ -99,4 +99,51 @@ export class ListComponent implements OnChanges {
     }
   }
 
+
+  // Another solution, without ngOnChanges - this is an alternative solution, made at 2023.08.19, for practise
+  getFilteredItems() {
+    let filteredItems:IItem[] = [];
+
+    if (this.selectedTypes.length === 0) {
+      filteredItems.push(...this.items);
+    } else {
+      this.items.filter(item => {
+        for (let index = 0; index < this.selectedTypes.length; index++) {
+          if (item.types.includes(this.selectedTypes[index])) {
+            filteredItems.push(item);
+          }
+        }
+      });
+    }
+
+    if (this.selectedSorting === 'title-desc') {
+      filteredItems.sort((item1, item2) => {
+        if (item1.title < item2.title) {
+          return -1;
+        }
+
+        if (item1.title === item2.title) {
+          return 0;
+        }
+
+        return 1;
+      })
+    }
+
+    if (this.selectedSorting === 'title-asc') {
+      filteredItems.sort((item1, item2) => {
+        if (item1.title > item2.title) {
+          return -1;
+        }
+
+        if (item1.title === item2.title) {
+          return 0;
+        }
+
+        return 1;
+      })
+    }
+
+    return filteredItems;
+  }
 }
